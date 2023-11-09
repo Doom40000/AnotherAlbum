@@ -5,14 +5,19 @@ import Album from "./components/Album";
 import { randomAlbum } from "./ApiServices/APIServices";
 
 function App() {
-  const [album, setAlbum] = useState('');
+  const [album, setAlbum] = useState(null);
   console.log(`Album:  ${album}`);
 
-  const handleClick = (event) => {
+  const handleClick = async (event) => {
     event.preventDefault();
-    randomAlbum().then((fetchedAlbum) => {
-      setAlbum(fetchedAlbum);
-    });
+    try {
+      const blobData = await randomAlbum();
+      const imageUrl = URL.createObjectURL(blobData);
+      setAlbum(imageUrl);
+    } catch (error) {
+      console.log(`Error: ${error}`);
+
+    }
   }
 
   return (
