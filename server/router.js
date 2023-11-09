@@ -1,5 +1,10 @@
 const router = require('express').Router();
 const mockData = require('./models/db');
+const path = require('path');
+
+function randomNum() {
+    return Math.floor(Math.random() * 8);
+}
 
 
 router.get('/', (req, res) => {
@@ -7,7 +12,9 @@ router.get('/', (req, res) => {
 });
 
 router.get('/album', (req, res) => {
-  res.sendFile(mockData[0].cover)
+  const index = randomNum();
+  const imagePath = path.join(__dirname, 'public/mockImages', mockData[index].cover)
+  res.sendFile(imagePath)
 })
 
 module.exports = router;
