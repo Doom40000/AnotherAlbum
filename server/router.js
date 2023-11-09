@@ -6,7 +6,6 @@ function randomNum() {
     return Math.floor(Math.random() * 8);
 }
 
-
 router.get('/', (req, res) => {
   res.send('Hello world!');
 });
