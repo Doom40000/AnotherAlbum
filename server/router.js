@@ -12,8 +12,9 @@ router.get('/', (req, res) => {
 
 router.get('/album', (req, res) => {
   const index = randomNum();
-  const imagePath = path.join(__dirname, 'public/mockImages', mockData[index].cover)
-  res.sendFile(imagePath)
+  const imagePath = path.join(__dirname, 'public/mockImages', mockData[index].cover);
+  console.log(imagePath);
+  res.send(imagePath);
 })
 
 module.exports = router;

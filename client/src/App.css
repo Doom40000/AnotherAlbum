@@ -9,7 +9,7 @@ html, body {
 }
 
 .App {
-  height: 100vw;
+  height: 100vh;
   width: 100vw;
   border: solid 3px red;
 }
@@ -23,6 +23,14 @@ html, body {
 }
 
 .Body {
-  height: 100vh;
+  display: flex;
+  justify-content: center;
+  height: 85%;
+  width: 100vw;
   border: 3px solid yellow;
+}
+
+.Album {
+  align-self: center;
+  border: solid 3px blueviolet;
 }
