@@ -1,18 +1,18 @@
 import { useState } from 'react'
 import "./App.css";
-import Navbar from "./components/Navbar";
-import Album from "./components/Album";
+import Navbar from "./components/NavBarComponent/Navbar";
+import Album from "./components/AlbumComponent/Album";
 import { randomAlbum } from "./ApiServices/APIServices";
 
 function App() {
   const [album, setAlbum] = useState(null);
+  const [favourites, setFavourite] = useState([]);
   console.log(`Album:  ${album}`);
 
   const handleClick = async (event) => {
     event.preventDefault();
     try {
-      const blobData = await randomAlbum();
-      const imageUrl = URL.createObjectURL(blobData);
+      const imageUrl = await randomAlbum();
       setAlbum(imageUrl);
     } catch (error) {
       console.log(`Error: ${error}`);

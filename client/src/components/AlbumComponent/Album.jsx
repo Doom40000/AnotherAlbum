@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-// const URL = "http://localhost:3000/album";
 
 export default function Album ({album}) {
   return (

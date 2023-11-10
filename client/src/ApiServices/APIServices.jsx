@@ -1,10 +1,11 @@
 /* eslint-disable react-refresh/only-export-components */
-const URL = "http://localhost:3000";
+const url = "http://localhost:3000";
 
 export async function randomAlbum() {
   try {
-    const data = await fetch(`${URL}/album`);
-    const response = await data.blob();
+    const data = await fetch(`${url}/album`);
+    const dataBlob = await data.blob();
+    const response = URL.createObjectURL(dataBlob);
     console.log(response);
     return response;
   } catch (error) {
