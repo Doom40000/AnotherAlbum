@@ -10,13 +10,13 @@ export default function AnotherAlbum () {
   const handleClick = async (event) => {
     event.preventDefault();
     try {
-      const imageUrl = await randomAlbum();
-      setAlbum(imageUrl);
+      const newAlbum = await randomAlbum();
+      setAlbum(newAlbum);
     } catch (error) {
       console.log(`Error: ${error}`);
     }
   };
-  //TODO Re-add navbar when login page added.
+
   return (
     <div className="AnotherAblum">
       <div className="Body">

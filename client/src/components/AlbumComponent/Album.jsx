@@ -4,7 +4,7 @@ export default function Album ({album}) {
   return (
     <div className="Album">
       {album &&
-        <img className="albumIMG" src={album}/>
+        <img className="albumIMG" src={album.cover}/>
       }
     </div>
   );
