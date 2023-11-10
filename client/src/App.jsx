@@ -11,12 +11,12 @@ function App() {
   const [album, setAlbum] = useState({ });
   const [favourites, setFavourite] = useState([]);
 
-  function handleToggleFave() {
+  function handleToggleFave(clickedAlbum) {
     setFavourite((prevFavourites) => {
-      if (prevFavourites.includes(album)) {
-        return prevFavourites.filter((fav) => fav !== album);
+      if (prevFavourites.includes(clickedAlbum)) {
+        return prevFavourites.filter((fav) => fav !== clickedAlbum);
       } else {
-        return [...prevFavourites, album];
+        return [...prevFavourites, clickedAlbum];
       }
     });
   }
