@@ -1,32 +1,21 @@
-import { useState } from 'react'
-import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from "./components/NavBarComponent/Navbar";
-import Album from "./components/AlbumComponent/Album";
-import { randomAlbum } from "./ApiServices/APIServices";
+import FourZeroFour from "./components/404Component/404";
+import AnotherAlbum from "./components/AnotherAlbumComponent/AnotherAlbum";
+import Login from "./components/LoginComponent/Login";
+import "./App.css";
 
 function App() {
-  const [album, setAlbum] = useState(null);
-  const [favourites, setFavourite] = useState([]);
-  console.log(`Album:  ${album}`);
-
-  const handleClick = async (event) => {
-    event.preventDefault();
-    try {
-      const imageUrl = await randomAlbum();
-      setAlbum(imageUrl);
-    } catch (error) {
-      console.log(`Error: ${error}`);
-
-    }
-  }
-
   return (
     <div className="App">
       <Navbar />
-      <div className="Body">
-        <Album album={album}/>
-        <button onClick={handleClick}>AnotherAlbum?</button>
-      </div>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/AnotherAlbum" element={<AnotherAlbum />}/>
+          <Route path="*" element={<FourZeroFour />}/>
+        </Routes>
+      </Router>
     </div>
   );
 }

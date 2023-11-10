@@ -13,7 +13,6 @@ router.get("/", (req, res) => {
 router.get("/album", (req, res) => {
   const index = randomNum();
   const imagePath = mockData[index].cover;
-  console.log(imagePath);
   res.sendFile(path.join(__dirname, "public/mockImages", imagePath));
 });
 
