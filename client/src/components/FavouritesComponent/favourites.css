@@ -1,7 +1,13 @@
-.Favourites {
+.FavouritesContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.Favourites {
+  display: flex;
+  overflow-x: scroll;
+  width: 90%;
 }
 
 .fave {

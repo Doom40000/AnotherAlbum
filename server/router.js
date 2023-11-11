@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const mockData = require("./models/db");
 const path = require("path");
+const fs = require("fs");
 
 function randomNum() {
   return Math.floor(Math.random() * 8);
@@ -12,8 +13,23 @@ router.get("/", (req, res) => {
 
 router.get("/album", (req, res) => {
   const index = randomNum();
-  const imagePath = mockData[index].cover;
-  res.sendFile(path.join(__dirname, "public/mockImages", imagePath));
+  const album = mockData[index];
+  const imagePath = path.join(__dirname, "public/mockImages", album.cover);
+  fs.readFile(imagePath, (error, data) => {
+    if (error) {
+      console.log(`Image error: ${error}`)
+      res.status(500).json({message: 'Internal Server Error'});
+    } else {
+      res.json({id: album.id, cover: data});
+    }
+  });
 });
+
+
+// router.get("/album", (req, res) => {
+//   const index = randomNum();
+//   const imagePath = mockData[index].cover;
+//   res.sendFile(path.join(__dirname, "public/mockImages", imagePath));
+// });
 
 module.exports = router;

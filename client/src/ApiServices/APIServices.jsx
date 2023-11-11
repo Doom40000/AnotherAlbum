@@ -3,19 +3,26 @@ import axios from "axios";
 
 const baseURL = "http://localhost:3000";
 const albumEndPoint = '/album';
-// let id = 0;
-
-// Not sure I need this, I may just use the array indexes as ids.
-// function generateID () {
-//   return id += 1;
-// }
 
 export async function randomAlbum() {
   try {
-    const response = await axios.get(`${baseURL}${albumEndPoint}`, {responseType: 'blob'});
-    const dataURL = URL.createObjectURL(response.data);
-    const album = {cover: dataURL, isFavourite : false}
-    return album
+
+    const jsonResponse = await axios.get(`${baseURL}${albumEndPoint}`, {responseType: 'json'});
+    const { id, cover } = jsonResponse.data;
+
+
+    const unit8Array = new Uint8Array(cover.data);
+
+    const dataBlob = new Blob([unit8Array], {type: 'image/JPEG'});
+    const dataURL = URL.createObjectURL(dataBlob);
+
+    const album = {
+      id: id,
+      cover: dataURL
+    }
+
+    return album;
+
   } catch (error) {
     console.log(`API Error: ${error}`);
   }
