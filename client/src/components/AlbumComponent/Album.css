@@ -1,3 +1,26 @@
-/* .faveButton {
+.Album {
+  position: relative;
+  width: 40%;
+  max-width: 600px;
+  max-height: 600px;
+}
 
-} */
+.albumIMG {
+  max-width: 600px;
+  max-height: 600px;
+  width: 100%;
+  height: auto;
+}
+
+.faveHeart {
+  position: absolute;
+  display: none;
+  max-width: 80px;
+  max-height: 80px;
+  right: 3%;
+  cursor: pointer;
+}
+
+.Album:hover .faveHeart {
+  display: inline;
+}

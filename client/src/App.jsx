@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./components/LoginComponent/Login";
 import Navbar from "./components/NavBarComponent/Navbar";
 import AnotherAlbum from "./components/AnotherAlbumComponent/AnotherAlbum";
@@ -8,8 +8,9 @@ import FourZeroFour from "./components/404Component/404";
 import "./App.css";
 
 function App() {
-  const [album, setAlbum] = useState({ });
+  const [album, setAlbum] = useState(null);
   const [favourites, setFavourite] = useState([]);
+  console.log(favourites);
 
   function handleToggleFave(clickedAlbum) {
     setFavourite((prevFavourites) => {
@@ -17,9 +18,13 @@ function App() {
         (fav) => fav.id === clickedAlbum.id
       );
       if (isAlbumInFave) {
-        return prevFavourites.filter((fav) => fav !== clickedAlbum);
+        const updatedFavourites = prevFavourites.map((fave) =>
+          fave.id === clickedAlbum.id ? { ...fave, isFavourite: false } : fave
+        );
+        return updatedFavourites.filter((fave) => fave.id !== clickedAlbum.id);
       } else {
-        return [...prevFavourites, clickedAlbum];
+        const updatedAlbum = { ...clickedAlbum, isFavourite: true };
+        return [...prevFavourites, updatedAlbum];
       }
     });
   }
@@ -27,11 +32,30 @@ function App() {
   return (
     <div className="App">
       <Router>
-      <Navbar />
+        <Navbar />
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/AnotherAlbum" element={<AnotherAlbum album={album} setAlbum={setAlbum} setFavourite={setFavourite} handleToggleFave={handleToggleFave}/>} />
-          <Route path="/Favourites" element={<Favourites favourites={favourites} setFavourite={setFavourite} handleToggleFave={handleToggleFave}/>} />
+          <Route
+            path="/AnotherAlbum"
+            element={
+              <AnotherAlbum
+                album={album}
+                setAlbum={setAlbum}
+                setFavourite={setFavourite}
+                handleToggleFave={handleToggleFave}
+              />
+            }
+          />
+          <Route
+            path="/Favourites"
+            element={
+              <Favourites
+                favourites={favourites}
+                setFavourite={setFavourite}
+                handleToggleFave={handleToggleFave}
+              />
+            }
+          />
           <Route path="*" element={<FourZeroFour />} />
         </Routes>
       </Router>

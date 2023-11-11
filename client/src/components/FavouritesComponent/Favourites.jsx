@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import "./favourites.css";
 
-//TODO Add a button that lets you remove albums from your favourites.
+//TODO Update button behaviour: Hover on mouseover and change icon accordingly.
 export default function Favourites({ favourites, handleToggleFave }) {
   return (
     <div className="FavouritesContainer">
