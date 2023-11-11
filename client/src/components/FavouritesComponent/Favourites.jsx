@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 import "./favourites.css";
+const assetPath = "../../../assets"
+
 
 //TODO Update button behaviour: Hover on mouseover and change icon accordingly.
 export default function Favourites({ favourites, handleToggleFave }) {
@@ -9,9 +11,13 @@ export default function Favourites({ favourites, handleToggleFave }) {
       <div className="Favourites">
         {favourites.length ? (
           favourites.map((album) => (
-            <div key={album.id}>
+            <div className="faveAlbum" key={album.id}>
               <img className="fave" src={album.cover} />
-              <button className="faveButton" onClick={() => handleToggleFave(album)}>Hello?</button>
+              <img
+            className="faveHeart"
+            src={album.isFavourite ?  `${assetPath}/remove.png` : `${assetPath}/yellowHeart.png` }
+            onClick={() => handleToggleFave(album)}
+          />
             </div>
           ))
         ) : (

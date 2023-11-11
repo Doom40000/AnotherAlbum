@@ -3,6 +3,8 @@
   width: 40%;
   max-width: 600px;
   max-height: 600px;
+  align-self: center;
+  border: solid 3px blueviolet;
 }
 
 .albumIMG {
