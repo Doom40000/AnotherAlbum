@@ -1,6 +1,4 @@
 /* eslint-disable react/prop-types */
-// import { useState } from "react";
-// import { BrowserRouter as Router, Route } from "react-router-dom";
 import Album from "../AlbumComponent/Album";
 import { randomAlbum } from "../../ApiServices/APIServices";
 

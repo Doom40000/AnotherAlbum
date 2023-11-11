@@ -13,7 +13,10 @@ function App() {
 
   function handleToggleFave(clickedAlbum) {
     setFavourite((prevFavourites) => {
-      if (prevFavourites.includes(clickedAlbum)) {
+      const isAlbumInFave = prevFavourites.some(
+        (fav) => fav.id === clickedAlbum.id
+      );
+      if (isAlbumInFave) {
         return prevFavourites.filter((fav) => fav !== clickedAlbum);
       } else {
         return [...prevFavourites, clickedAlbum];
