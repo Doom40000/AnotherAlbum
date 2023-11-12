@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const router = require("express").Router();
 const mockData = require("./models/db");
 const path = require("path");
@@ -20,16 +21,9 @@ router.get("/album", (req, res) => {
       console.log(`Image error: ${error}`)
       res.status(500).json({message: 'Internal Server Error'});
     } else {
-      res.json({id: album.id, cover: data});
+      res.json({id: album.id, artist: album.artist, albumName: album.album ,cover: data});
     }
   });
 });
-
-
-// router.get("/album", (req, res) => {
-//   const index = randomNum();
-//   const imagePath = mockData[index].cover;
-//   res.sendFile(path.join(__dirname, "public/mockImages", imagePath));
-// });
 
 module.exports = router;

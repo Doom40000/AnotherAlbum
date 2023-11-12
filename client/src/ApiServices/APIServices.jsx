@@ -9,7 +9,7 @@ export async function randomAlbum() {
     const jsonResponse = await axios.get(`${baseURL}${albumEndPoint}`, {
       responseType: "json",
     });
-    const { id, cover } = jsonResponse.data;
+    const { id, artist, albumName, cover } = jsonResponse.data;
 
     const unit8Array = new Uint8Array(cover.data);
 
@@ -18,6 +18,8 @@ export async function randomAlbum() {
 
     const album = {
       id: id,
+      artist: artist,
+      albumName: albumName,
       cover: dataURL,
       isFavourite: false,
     };
