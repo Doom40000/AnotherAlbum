@@ -1,6 +1,5 @@
 .AnotherAlbum {
   display: flex;
-  width: 100%;
   justify-content: center;
   /* border: 3px solid yellow; */
 }
@@ -8,19 +7,17 @@
 .AlbumOptions {
   display: flex;
   position: relative;
-  flex-direction: column;
-  justify-content: flex-start;
   height: 50%;
-  right: 2vw;
+  flex-direction: column;
+  margin-right: 2vw;
   top: 1vh;
-  /* border: 2px solid gold; */
+  border: 2px solid gold;
 }
 
 .AADisplay {
   display: flex;
   flex-direction: column;
   align-items: center;
-  align-self: center;
   /* border: 3px solid green; */
 }
 
@@ -47,7 +44,7 @@
   flex-direction: column;
   height: 100%;
   color: #f2e718;
-  left: 2vw;
+  margin-left: 2vw;
   top: 1vh;
   /* border: 1px solid red; */
 }
