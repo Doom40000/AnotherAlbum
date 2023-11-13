@@ -4,11 +4,26 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  border: 3px solid white;
+  /* border: 3px solid white; */
 }
 
-.NavLink {
+.Logo {
+  margin: 4vh 0;
+  position: relative;
+  margin-left: 11vw;
+
+}
+
+.Navlinks {
+  display: flex;
+  position: relative;
+  left: 7vw;
+}
+
+ .NavLink {
+  font-size: 30px;
   color: #F2E718;
+  margin-right: 20px;
 }
 
 .NavLink:hover {

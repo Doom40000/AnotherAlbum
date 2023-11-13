@@ -8,11 +8,13 @@ export default function Login() {
       <input></input>
       <h3>Password:</h3>
       <input></input>
+      <button>Login</button>
       <h2>Register:</h2>
       <h3>Email:</h3>
       <input></input>
       <h3>Password:</h3>
       <input></input>
+      <button>Register</button>
     </div>
   );
 }

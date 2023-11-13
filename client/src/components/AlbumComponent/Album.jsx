@@ -2,7 +2,7 @@
 import "./Album.css";
 const assetPath = "../../../assets"
 
-//TODO Add CSS that will display the button on hover.
+
 export default function Album({ album, handleToggleFave }) {
   return (
     <>
