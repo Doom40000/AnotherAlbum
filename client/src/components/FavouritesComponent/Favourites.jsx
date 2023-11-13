@@ -2,12 +2,18 @@
 import "./favourites.css";
 const assetPath = "../../../assets"
 
-
-//TODO Update button behaviour: Hover on mouseover and change icon accordingly.
 export default function Favourites({ favourites, handleToggleFave }) {
   return (
     <div className="FavouritesContainer">
-      <h1>Here are your favourites!</h1>
+      {favourites.length ? (
+        favourites.length === 1 ? (
+          <h1>Here is your favourite!</h1>
+         ) : (
+           <h1>Here are your favourites!</h1>
+         )
+        ) : (
+        <h1>You have no saved favourites.</h1>
+      )}
       <div className="Favourites">
         {favourites.length ? (
           favourites.map((album) => (
@@ -21,7 +27,7 @@ export default function Favourites({ favourites, handleToggleFave }) {
             </div>
           ))
         ) : (
-          <p className="noFaves">You have no favourite albums!</p>
+        null
         )}
       </div>
     </div>

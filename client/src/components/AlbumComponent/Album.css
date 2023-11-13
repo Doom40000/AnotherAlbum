@@ -3,6 +3,7 @@
   position: relative;
   width: 100%;
   height: 100%;
+  margin-bottom: 25px;
   /* border: solid 3px blueviolet; */
 }
 
@@ -12,7 +13,7 @@
   max-height: 600px;
   min-height: 600px;
   width: 100%;
-  height: auto;
+  /* border: solid 3px yellow; */
 }
 
 .faveHeart {
@@ -22,8 +23,21 @@
   max-height: 80px;
   right: 3%;
   cursor: pointer;
+  z-index: 2;
 }
 
 .Album:hover .faveHeart {
   display: inline;
 }
+
+.AlbumPlaceholder {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  min-width: 600px;
+  /* max-height: 600px;
+  min-height: 600px; */
+  width: 100%;
+  margin-bottom: 9px;
+}
+

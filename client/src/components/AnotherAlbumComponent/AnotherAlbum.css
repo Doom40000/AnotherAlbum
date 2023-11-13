@@ -1,6 +1,7 @@
 .AnotherAlbum {
   display: flex;
   justify-content: center;
+  margin-left: 10vw;
   /* border: 3px solid yellow; */
 }
 
@@ -46,5 +47,6 @@
   color: #f2e718;
   margin-left: 2vw;
   top: 1vh;
+  min-width: 20%;
   /* border: 1px solid red; */
 }

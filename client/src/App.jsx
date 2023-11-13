@@ -10,7 +10,7 @@ import "./App.css";
 function App() {
   const [album, setAlbum] = useState(null);
   const [favourites, setFavourite] = useState([]);
-  console.log(album);
+  // console.log(album);
 
   function handleToggleFave(clickedAlbum) {
     setFavourite((prevFavourites) => {
