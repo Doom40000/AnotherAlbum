@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import Album from "../AlbumComponent/Album";
+import Spinner from "../SpinnerComponent/Spinner";
 import { randomAlbum } from "../../ApiServices/APIServices";
 import "./AnotherAlbum.css";
 
@@ -11,30 +12,25 @@ export default function AnotherAlbum({
   setFavourite,
   handleToggleFave,
 }) {
-  // const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const animationControl = useAnimation();
 
   useEffect(() => {
-    console.log("useEffect triggered");
-    console.log("Album:", album);
     if (album) {
-      console.log("Animation started");
-      animationControl
-        .start({ x: 0, opacity: 1 })
-        .then(() => console.log("Animation complete."));
+      animationControl.start({ x: 0, opacity: 1 });
     }
   }, [album, animationControl]);
 
-  // const newAlbum = () => Promise.resolve(setIsLoaded(false));
-
   const handleClick = async (event) => {
     event.preventDefault();
-    // await newAlbum();
+    setIsLoading(true);
     try {
       const newAlbum = await randomAlbum();
       setAlbum(newAlbum);
     } catch (error) {
       console.log(`Error: ${error}`);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -47,11 +43,21 @@ export default function AnotherAlbum({
         </select>
       </div>
       <div className="AADisplay">
-        <Album
-          album={album}
-          setFavourite={setFavourite}
-          handleToggleFave={handleToggleFave}
-        />
+        {isLoading ? (
+          <motion.div
+            className="AlbumSpinner"
+            initial={{ opacity: 0, rotate: 0 }}
+            animate={{ opacity: 1, rotate: 180, transition: { duration: 0.8, ease: 'easeInOut'} }}
+          >
+            <Spinner />
+          </motion.div>
+        ) : (
+          <Album
+            album={album}
+            setFavourite={setFavourite}
+            handleToggleFave={handleToggleFave}
+          />
+        )}
 
         {album ? (
           <motion.div
@@ -78,6 +84,7 @@ export default function AnotherAlbum({
       {album ? (
         <motion.div
           className="AlbumDetails"
+          key={album.id}
           initial={{ x: 100, opacity: 0 }}
           animate={animationControl}
           transition={{ duration: 0.5 }}
