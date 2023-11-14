@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import { motion } from 'framer-motion';
 import "./Navbar.css";
+const assetPath = "../../../assets"
 
 export default function Navbar() {
   return (
     <div className="Navbar">
-      <h1 className="Logo">AnotherAlbum 🎵</h1>
+      <img className="Logo" src={`${assetPath}/LogoSmaller.jpeg`} />
       <nav className="Navlinks">
         <motion.div
         whileHover={{
