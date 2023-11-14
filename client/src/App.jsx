@@ -10,8 +10,9 @@ import "./App.css";
 function App() {
   const [album, setAlbum] = useState(null);
   const [favourites, setFavourite] = useState([]);
-  // console.log(album);
 
+
+  //TODO Keep only the IDs in the favaourites array, change the isFav within the album.The Id will be referring to the album object.
   function handleToggleFave(clickedAlbum) {
     setFavourite((prevFavourites) => {
       const isAlbumInFave = prevFavourites.some(

@@ -2,7 +2,6 @@
   display: flex;
   justify-content: center;
   margin-left: 12vw;
-  /* border: 3px solid yellow; */
 }
 
 .AlbumOptions {
@@ -19,7 +18,6 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  /* border: 3px solid green; */
 }
 
 .AAButton {
@@ -34,9 +32,13 @@
   border: 1px solid #f2e718;
 }
 
+.AAButton:focus {
+  outline-color: #f9f59f;
+}
+
 .AAButton:hover {
-  color: #F9F59F;
-  border: 1px solid #F9F59F;
+  color: #f9f59f;
+  border: 1px solid #f9f59f;
 }
 
 .AlbumSpinner {
@@ -53,5 +55,16 @@
   margin-left: 2vw;
   top: 1vh;
   min-width: 20%;
-  /* border: 1px solid red; */
+}
+
+.detailsHeader:hover {
+  color: #f9f59f;
+}
+
+.artistDetails:hover {
+  color: #f9f59f;
+}
+
+.albumDetails:hover {
+  color: #f9f59f;
 }

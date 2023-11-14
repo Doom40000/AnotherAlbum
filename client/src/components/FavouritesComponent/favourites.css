@@ -5,6 +5,10 @@
   color: #f2e718;
 }
 
+.faveHeader {
+ text-decoration: underline;
+}
+
 .faveAlbum {
   display: flex;
   position: relative;

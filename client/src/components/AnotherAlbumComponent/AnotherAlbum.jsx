@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types */
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import Album from "../AlbumComponent/Album";
-import Spinner from "../SpinnerComponent/Spinner";
 import { randomAlbum } from "../../ApiServices/APIServices";
 import "./AnotherAlbum.css";
 
@@ -12,7 +11,6 @@ export default function AnotherAlbum({
   setFavourite,
   handleToggleFave,
 }) {
-  const [isLoading, setIsLoading] = useState(false);
   const animationControl = useAnimation();
 
   useEffect(() => {
@@ -23,41 +21,22 @@ export default function AnotherAlbum({
 
   const handleClick = async (event) => {
     event.preventDefault();
-    setIsLoading(true);
     try {
       const newAlbum = await randomAlbum();
       setAlbum(newAlbum);
     } catch (error) {
       console.log(`Error: ${error}`);
-    } finally {
-      setIsLoading(false);
     }
   };
 
   return (
     <div className="AnotherAlbum">
-      <div className="AlbumOptions">
-        <select>
-          <option value="rock">Rock</option>
-          <option value="dance">Dance</option>
-        </select>
-      </div>
       <div className="AADisplay">
-        {isLoading ? (
-          <motion.div
-            className="AlbumSpinner"
-            initial={{ opacity: 0, rotate: 0 }}
-            animate={{ opacity: 1, rotate: 180, transition: { duration: 0.8, ease: 'easeInOut'} }}
-          >
-            <Spinner />
-          </motion.div>
-        ) : (
-          <Album
-            album={album}
-            setFavourite={setFavourite}
-            handleToggleFave={handleToggleFave}
-          />
-        )}
+        <Album
+          album={album}
+          setFavourite={setFavourite}
+          handleToggleFave={handleToggleFave}
+        />
 
         {album ? (
           <motion.div
@@ -89,9 +68,30 @@ export default function AnotherAlbum({
           animate={animationControl}
           transition={{ duration: 0.5 }}
         >
-          <h2>Here&apos;s Another Album for you...</h2>
-          <h2>Artist: {album.artist}</h2>
-          <h3>Album: {album.albumName}</h3>
+          <motion.h2
+            className="detailsHeader"
+            whileHover={{
+              scale: 1.1,
+            }}
+          >
+            Here&apos;s Another Album for you...
+          </motion.h2>
+          <motion.h2
+            className="artistDetails"
+            whileHover={{
+              scale: 1.1,
+            }}
+          >
+            Artist: {album.artist}
+          </motion.h2>
+          <motion.h3
+            className="albumDetails"
+            whileHover={{
+              scale: 1.1,
+            }}
+          >
+            Album: {album.albumName}
+          </motion.h3>
         </motion.div>
       ) : (
         <div className="AlbumDetails"></div>
