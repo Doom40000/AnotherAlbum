@@ -1,5 +1,53 @@
-.login {
+.userDetailsContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: #f2e718;
  }
+
+ .userDetailsContainer h2 {
+  font-size: 3em;
+  margin: 0;
+ }
+
+ .userDetailsContainer h3 {
+  font-size: 1.6em;
+  margin: 10px;
+ }
+
+.loginButton, .registerButton {
+  margin: 20px;
+  border: 1px solid #f2e718;
+  background-color: #1F1F1F;
+  color: #f2e718;
+}
+
+.loginButton:hover, .registerButton:hover {
+  border: 1px solid #f9f59f;
+}
+
+.login:focus, .register:focus {
+  outline-color: #f9f59f;
+}
+
+.loginInput, .registerInput {
+  font-size: 1.8em;
+}
+
+.loginInput:focus, .registerInput:focus {
+  outline-color: #f2e718;
+}
+
+.registerHeader {
+  margin-top: 300px;
+}
+
+.registerHeader:hover {
+  cursor: pointer;
+  color: #f9f59f;
+}
+
+
+.NavLink:hover {
+  color: #F9F59F;
+}

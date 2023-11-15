@@ -53,6 +53,7 @@ export default function AnotherAlbum({
             whileHover={{
               scale: 1.5,
             }}
+            style={{marginRight: '14vw'}}
           >
             <button className="AAButton" onClick={handleClick}>
               Hit me with an album!
@@ -68,30 +69,31 @@ export default function AnotherAlbum({
           animate={animationControl}
           transition={{ duration: 0.5 }}
         >
-          <motion.h2
+          <motion.h1
             className="detailsHeader"
             whileHover={{
               scale: 1.1,
             }}
           >
             Here&apos;s Another Album for you...
-          </motion.h2>
-          <motion.h2
+          </motion.h1>
+          <motion.h1
             className="artistDetails"
             whileHover={{
               scale: 1.1,
             }}
           >
-            Artist: {album.artist}
-          </motion.h2>
-          <motion.h3
+            Album: {album.albumName}
+
+          </motion.h1>
+          <motion.h1
             className="albumDetails"
             whileHover={{
               scale: 1.1,
             }}
           >
-            Album: {album.albumName}
-          </motion.h3>
+            Artist: {album.artist}
+          </motion.h1>
         </motion.div>
       ) : (
         <div className="AlbumDetails"></div>

@@ -1,7 +1,7 @@
 .AnotherAlbum {
   display: flex;
   justify-content: center;
-  margin-left: 12vw;
+  margin-left: 30vw;
 }
 
 .AlbumOptions {
@@ -47,6 +47,7 @@
 }
 
 .AlbumDetails {
+  font-size: 15px;
   display: flex;
   position: relative;
   flex-direction: column;

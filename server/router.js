@@ -8,20 +8,26 @@ function randomNum() {
   return Math.floor(Math.random() * 8);
 }
 
+
 router.get("/", (req, res) => {
   res.send("Hello world!");
 });
 
 router.get("/album", (req, res) => {
-  const index = randomNum();
+  let index = randomNum();
   const album = mockData[index];
   const imagePath = path.join(__dirname, "public/mockImages", album.cover);
   fs.readFile(imagePath, (error, data) => {
     if (error) {
-      console.log(`Image error: ${error}`)
-      res.status(500).json({message: 'Internal Server Error'});
+      console.log(`Image error: ${error}`);
+      res.status(500).json({ message: "Internal Server Error" });
     } else {
-      res.json({id: album.id, artist: album.artist, albumName: album.album ,cover: data});
+      res.json({
+        id: album.id,
+        artist: album.artist,
+        albumName: album.album,
+        cover: data,
+      });
     }
   });
 });

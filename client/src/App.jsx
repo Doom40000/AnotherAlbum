@@ -10,9 +10,10 @@ import "./App.css";
 function App() {
   const [album, setAlbum] = useState(null);
   const [favourites, setFavourite] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 
-  //TODO Keep only the IDs in the favaourites array, change the isFav within the album.The Id will be referring to the album object.
+
   function handleToggleFave(clickedAlbum) {
     setFavourite((prevFavourites) => {
       const isAlbumInFave = prevFavourites.some(
@@ -33,9 +34,9 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Navbar />
+        <Navbar isLoggedIn={isLoggedIn}  setIsLoggedIn={setIsLoggedIn}/>
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<Login setIsLoggedIn={setIsLoggedIn}/>} />
           <Route
             path="/AnotherAlbum"
             element={
