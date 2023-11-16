@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+//client\src\components\AnotherAlbumComponent\AnotherAlbum.jsx
 import { useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import Album from "../AlbumComponent/Album";
@@ -53,7 +53,7 @@ export default function AnotherAlbum({
             whileHover={{
               scale: 1.5,
             }}
-            style={{marginRight: '14vw'}}
+            style={{ marginRight: "14vw" }}
           >
             <button className="AAButton" onClick={handleClick}>
               Hit me with an album!
@@ -84,7 +84,6 @@ export default function AnotherAlbum({
             }}
           >
             Album: {album.albumName}
-
           </motion.h1>
           <motion.h1
             className="albumDetails"

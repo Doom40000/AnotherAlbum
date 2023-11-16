@@ -1,3 +1,4 @@
+//client\src\App.jsx
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./components/LoginComponent/Login";
@@ -11,8 +12,6 @@ function App() {
   const [album, setAlbum] = useState(null);
   const [favourites, setFavourite] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-
 
   function handleToggleFave(clickedAlbum) {
     setFavourite((prevFavourites) => {
@@ -34,9 +33,9 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Navbar isLoggedIn={isLoggedIn}  setIsLoggedIn={setIsLoggedIn}/>
+        <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
         <Routes>
-          <Route path="/" element={<Login setIsLoggedIn={setIsLoggedIn}/>} />
+          <Route path="/" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
           <Route
             path="/AnotherAlbum"
             element={

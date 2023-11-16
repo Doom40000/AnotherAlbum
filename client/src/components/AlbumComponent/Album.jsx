@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+//client\src\components\AlbumComponent\Album.jsx
 import "./Album.css";
 import { motion } from "framer-motion";
 const assetPath = "../../../assets/Icons";
@@ -8,7 +8,7 @@ export default function Album({ album, handleToggleFave }) {
     <>
       {album ? (
         <div className="Album">
-          <img className="albumIMG" src={album.cover} />
+          <img className="albumIMG" src={album.cover} alt="album cover" />
           <motion.div
             className="faveHeart"
             whileHover={{
@@ -17,6 +17,7 @@ export default function Album({ album, handleToggleFave }) {
           >
             <img
               key={album.isFavourite}
+              data-testid="favourite-heart"
               className="faveHeart"
               src={
                 album.isFavourite
@@ -28,7 +29,7 @@ export default function Album({ album, handleToggleFave }) {
           </motion.div>
         </div>
       ) : (
-        <div className="AlbumPlaceholder"></div>
+        <div className="AlbumPlaceholder" data-testid="album-placeholder"></div>
       )}
     </>
   );
