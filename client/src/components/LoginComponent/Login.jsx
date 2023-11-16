@@ -8,12 +8,13 @@ export default function Login({ isLoggedIn, setIsLoggedIn }) {
   const [isClicked, setIsClicked] = useState(false);
 
   return (
+    // This could be a form with a submit instead of a link - the onSubmitHandler could use navigate() to apply same functionality as below
     <div className="userDetailsContainer">
       <h2>Login:</h2>
       <h3>Email:</h3>
-      <input className="loginInput"></input>
+      <input data-testid="login-input-email" className="loginInput" type="text"></input>
       <h3>Password:</h3>
-      <input className="loginInput" type="password"></input>
+      <input data-testid="login-input-password" className="loginInput" type="password"></input>
       <Link to="/AnotherAlbum">
         <motion.button
           whileHover={{
@@ -30,6 +31,7 @@ export default function Login({ isLoggedIn, setIsLoggedIn }) {
           scale: 1.2,
         }}
         className="registerHeader"
+        data-testid="new-here-heading"
         onClick={() => setIsClicked(!isClicked)}
       >
         New here?
@@ -37,7 +39,7 @@ export default function Login({ isLoggedIn, setIsLoggedIn }) {
       {isClicked && (
         <>
           <h3>Email:</h3>
-          <input className="registerInput"></input>
+          <input className="registerInput" type="text"></input>
           <h3>Set Password:</h3>
           <input className="registerInput" type="password"></input>
           <motion.button
@@ -45,6 +47,7 @@ export default function Login({ isLoggedIn, setIsLoggedIn }) {
               scale: 1.2,
             }}
             className="registerButton"
+            data-testid="register-user"
           >
             Register User
           </motion.button>

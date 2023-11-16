@@ -17,9 +17,11 @@ export default function Favourites({ favourites, handleToggleFave }) {
       )}
       <div
         className={`Favourites ${favourites.length > 3 ? "showScrollBar" : ""}`}
+        data-testid="favourites-container"
       >
         {favourites.length
           ? favourites.map((album) => (
+            // This could be a component called Album
               <div className="faveAlbum" key={album.id}>
                 <img className="fave" src={album.cover} />
                 <motion.img

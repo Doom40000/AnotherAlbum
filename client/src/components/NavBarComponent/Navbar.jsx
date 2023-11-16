@@ -7,8 +7,8 @@ const assetPath = "../../../assets";
 export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
   return (
     <div className="Navbar">
-      <img className="Logo" src={`${assetPath}/LogoSmaller.jpeg`} style={isLoggedIn ?  {} : {marginRight: '5vw'} } />
-      <nav className="Navlinks">
+      <img className="Logo" src={`${assetPath}/LogoSmaller.jpeg`} alt="logo" style={isLoggedIn ?  {} : {marginRight: '5vw'} } />
+      <nav data-testid="nav-link-container" className="Navlinks">
         <motion.div
           whileHover={{
             scale: 1.2,
@@ -20,11 +20,12 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
               className="NavLink"
               to="/"
               style={{ padding: 5 }}
+              data-testid="logout-button"
             >
               Logout
             </Link>
           ) : (
-            <Link className="NavLink" to="/" style={{ padding: 5 }}>
+            <Link className="NavLink" to="/" style={{ padding: 5 }} data-testid="login-button">
               Login
             </Link>
           )}
@@ -38,17 +39,19 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
             AnotherAlbum
           </Link>
         </motion.div>
+        {isLoggedIn && (
         <motion.div
           whileHover={{
             scale: 1.2,
           }}
         >
-          {isLoggedIn && (
+          
             <Link className="NavLink" to="/Favourites" style={{ padding: 5 }}>
               Favourites
             </Link>
-          )}
+          
         </motion.div>
+        )}
       </nav>
     </div>
   );
