@@ -1,10 +1,16 @@
 /* eslint-disable react/prop-types */
+import React, { ReactElement } from 'react';
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import "./Navbar.css";
 const assetPath = "../../../assets";
 
-export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
+interface NavbarProps {
+  isLoggedIn: boolean;
+  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, setIsLoggedIn }): ReactElement => {
   return (
     <div className="Navbar">
       <img className="Logo" src={`${assetPath}/LogoSmaller.jpeg`} alt="logo" style={isLoggedIn ?  {} : {marginRight: '5vw'} } />
@@ -56,3 +62,5 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
     </div>
   );
 }
+
+export default Navbar;

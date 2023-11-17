@@ -1,9 +1,16 @@
 /* eslint-disable react/prop-types */
+import React, { ReactElement } from 'react';
 import "./favourites.css";
 const assetPath = "../../../assets/Icons";
+import { Album as AlbumType } from "../../../types";
 import { motion } from "framer-motion";
 
-export default function Favourites({ favourites, handleToggleFave }) {
+interface FavouritesProps {
+  favourites: AlbumType[] | [];
+  handleToggleFave: (album: AlbumType) => void;
+}
+
+const Favourites: React.FC<FavouritesProps> = ({ favourites, handleToggleFave }): ReactElement => {
   return (
     <div className="FavouritesContainer">
       {favourites.length ? (
@@ -20,7 +27,7 @@ export default function Favourites({ favourites, handleToggleFave }) {
         data-testid="favourites-container"
       >
         {favourites.length
-          ? favourites.map((album) => (
+          ? favourites.map((album: AlbumType) => (
             // This could be a component called Album
               <div className="faveAlbum" key={album.id}>
                 <img className="fave" src={album.cover} />
@@ -43,3 +50,5 @@ export default function Favourites({ favourites, handleToggleFave }) {
     </div>
   );
 }
+
+export default Favourites;

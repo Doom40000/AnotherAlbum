@@ -1,11 +1,17 @@
 /* eslint-disable react/prop-types */
+import React, { ReactElement } from 'react';
 import "./Login.css";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
-export default function Login({ isLoggedIn, setIsLoggedIn }) {
-  const [isClicked, setIsClicked] = useState(false);
+interface LoginProps {
+  isLoggedIn: boolean;
+  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Login: React.FC<LoginProps> = ({ isLoggedIn, setIsLoggedIn }): ReactElement => {
+  const [isClicked, setIsClicked] = useState<boolean>(false);
 
   return (
     // This could be a form with a submit instead of a link - the onSubmitHandler could use navigate() to apply same functionality as below
@@ -56,3 +62,5 @@ export default function Login({ isLoggedIn, setIsLoggedIn }) {
     </div>
   );
 }
+
+export default Login;
