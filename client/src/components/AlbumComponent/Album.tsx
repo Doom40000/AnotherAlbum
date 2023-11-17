@@ -1,9 +1,18 @@
 //client\src\components\AlbumComponent\Album.jsx
+
+import React from "react";
 import "./Album.css";
 import { motion } from "framer-motion";
+import { Album as AlbumType } from "../../../types";
+
 const assetPath = "../../../assets/Icons";
 
-export default function Album({ album, handleToggleFave }) {
+interface AlbumProps {
+  album?: AlbumType; // album is now optional
+  handleToggleFave: (album: AlbumType) => void;
+}
+
+const Album: React.FC<AlbumProps> = ({ album, handleToggleFave }) => {
   return (
     <>
       {album ? (
@@ -16,7 +25,6 @@ export default function Album({ album, handleToggleFave }) {
             }}
           >
             <img
-              key={album.isFavourite}
               data-testid="favourite-heart"
               className="faveHeart"
               src={
@@ -25,6 +33,11 @@ export default function Album({ album, handleToggleFave }) {
                   : `${assetPath}/yellowHeartbigger.svg`
               }
               onClick={() => handleToggleFave(album)}
+              alt={
+                album.isFavourite
+                  ? "Remove from favourites"
+                  : "Add to favourites"
+              }
             />
           </motion.div>
         </div>
@@ -33,4 +46,6 @@ export default function Album({ album, handleToggleFave }) {
       )}
     </>
   );
-}
+};
+
+export default Album;
