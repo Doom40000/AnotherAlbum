@@ -1,6 +1,7 @@
 //client\src\App.jsx
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useAuth } from './context/AuthContext';
 import Login from "./components/LoginComponent/Login";
 import Navbar from "./components/NavBarComponent/Navbar";
 import AnotherAlbum from "./components/AnotherAlbumComponent/AnotherAlbum";
@@ -9,9 +10,14 @@ import FourZeroFour from "./components/404Component/404";
 import "./App.css";
 
 function App() {
+  const { user } = useAuth();
   const [album, setAlbum] = useState(null);
   const [favourites, setFavourite] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    user ? setIsLoggedIn(true) : setIsLoggedIn(false);
+  },[user]);
 
   function handleToggleFave(clickedAlbum) {
     setFavourite((prevFavourites) => {

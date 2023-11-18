@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 import React, { ReactElement } from 'react';
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { useAuth } from '../../context/AuthContext';
 
 interface LoginProps {
   isLoggedIn: boolean;
@@ -12,26 +13,58 @@ interface LoginProps {
 
 const Login: React.FC<LoginProps> = ({ isLoggedIn, setIsLoggedIn }): ReactElement => {
   const [isClicked, setIsClicked] = useState<boolean>(false);
+  const [createUserForm, setCreateUserForm] = useState<{email: string | null, password: string | null}>({email: null, password: null});
+  const [signInForm, setSignInForm] = useState<{email: string | null, password: string | null}>({email: null, password: null});
+
+  const { createUser, signIn } = useAuth();
+  const navigate = useNavigate();
+
+  const handleCreateUserChange = (e): void => {
+    const { name, value } = e.target
+    setCreateUserForm((prevState) => ({ ...prevState, [name]: value }));
+  }
+
+  const handleCreateUserSubmit = async (e): Promise<void> => {
+    e.preventDefault();
+    const { email, password } = createUserForm;
+    if (email && password) {
+      await createUser(email, password);
+      navigate('/AnotherAlbum')
+    }
+  }
+
+  const handleSignInChange = (e): void => {
+    const { name, value } = e.target
+    setSignInForm((prevState) => ({ ...prevState, [name]: value }));
+  }
+
+  const handleSignInSubmit = async (e): Promise<void> => {
+    e.preventDefault();
+    console.log('running handler')
+    const { email, password } = signInForm;
+    if (email && password) {
+      await signIn(email, password);
+      navigate('/AnotherAlbum')
+    }
+  }
 
   return (
-    // This could be a form with a submit instead of a link - the onSubmitHandler could use navigate() to apply same functionality as below
     <div className="userDetailsContainer">
       <h2>Login:</h2>
-      <h3>Email:</h3>
-      <input data-testid="login-input-email" className="loginInput" type="text"></input>
-      <h3>Password:</h3>
-      <input data-testid="login-input-password" className="loginInput" type="password"></input>
-      <Link to="/AnotherAlbum">
+      <form onSubmit={handleSignInSubmit}>
+        <h3>Email:</h3>
+        <input name="email" onChange={handleSignInChange} data-testid="login-input-email" className="loginInput" type="text"></input>
+        <h3>Password:</h3>
+        <input name="password" onChange={handleSignInChange}  data-testid="login-input-password" className="loginInput" type="password"></input>
         <motion.button
           whileHover={{
             scale: 1.2,
           }}
           className="loginButton"
-          onClick={() => setIsLoggedIn(!isLoggedIn)}
         >
           Login User
         </motion.button>
-      </Link>
+      </form>
       <motion.h2
         whileHover={{
           scale: 1.2,
@@ -43,11 +76,11 @@ const Login: React.FC<LoginProps> = ({ isLoggedIn, setIsLoggedIn }): ReactElemen
         New here?
       </motion.h2>
       {isClicked && (
-        <>
+        <form onSubmit={handleCreateUserSubmit}>
           <h3>Email:</h3>
-          <input className="registerInput" type="text"></input>
+          <input name="email" onChange={handleCreateUserChange} className="registerInput" type="text"></input>
           <h3>Set Password:</h3>
-          <input className="registerInput" type="password"></input>
+          <input name="password" onChange={handleCreateUserChange} className="registerInput" type="password"></input>
           <motion.button
             whileHover={{
               scale: 1.2,
@@ -57,7 +90,7 @@ const Login: React.FC<LoginProps> = ({ isLoggedIn, setIsLoggedIn }): ReactElemen
           >
             Register User
           </motion.button>
-        </>
+        </form>
       )}
     </div>
   );

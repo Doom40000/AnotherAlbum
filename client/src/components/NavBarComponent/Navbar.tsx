@@ -2,6 +2,7 @@
 import React, { ReactElement } from 'react';
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useAuth } from '../../context/AuthContext';
 import "./Navbar.css";
 const assetPath = "../../../assets";
 
@@ -11,6 +12,12 @@ interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, setIsLoggedIn }): ReactElement => {
+  const { signOut } = useAuth();
+
+  const logoutClickHandler = (): void => {
+    signOut();
+  }
+
   return (
     <div className="Navbar">
       <img className="Logo" src={`${assetPath}/LogoSmaller.jpeg`} alt="logo" style={isLoggedIn ?  {} : {marginRight: '5vw'} } />
@@ -22,7 +29,7 @@ const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, setIsLoggedIn }): ReactElem
         >
           {isLoggedIn ? (
             <Link
-              onClick={() => setIsLoggedIn(false)}
+              onClick={logoutClickHandler}
               className="NavLink"
               to="/"
               style={{ padding: 5 }}
