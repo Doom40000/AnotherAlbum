@@ -1,5 +1,5 @@
-import React from 'react';
-import type { SupabaseClient, User } from '@supabase/supabase-js';
+import React from "react";
+import type { SupabaseClient, User } from "@supabase/supabase-js";
 
 export interface Album {
   id: number;
@@ -15,10 +15,11 @@ export interface AuthContextProps {
   // refreshSession: () => Promise<void>;
   // getCurrentUser: () => Promise<void>;
   // updateUser: (updates: any) => Promise<void>;
-  createUser: (email: string, password: string) => Promise<void>; 
+  createUser: (email: string, password: string) => Promise<void>;
   signIn: (email: string, password: string) => Promise<void>;
   signOut: () => Promise<void>;
   user: User | null;
+  addAlbum: (album: Album) => Promise<void>;
 }
 
 export interface AuthProviderProps {

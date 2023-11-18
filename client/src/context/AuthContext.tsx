@@ -1,12 +1,17 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import supabase from '../utils/supabase'
-import type { User } from '@supabase/supabase-js';
-import { AuthContextProps, AuthProviderProps } from '../../types';
+import React, { createContext, useContext, useState, useEffect } from "react";
+import supabase from "../utils/supabase";
+import type { User } from "@supabase/supabase-js";
+import {
+  AuthContextProps,
+  AuthProviderProps,
+  Album as AlbumType,
+} from "../../types";
 
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
+  const [favAlbums, setFavAlbums] = useState<AlbumType[]>([]);
 
   useEffect(() => {
     const initializeSession = async () => {
@@ -34,10 +39,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       email: email,
       password: password,
     });
-  }
+  };
 
   const signIn = async (email: string, password: string) => {
-    console.log('running')
+    console.log("running");
     const { data, error } = await supabase.auth.signInWithPassword({
       email: email,
       password: password,
@@ -45,12 +50,36 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     if (!error && data.user) {
       setUser(data.user);
     }
-  }
+  };
 
   const signOut = async () => {
     await supabase.auth.signOut();
     setUser(null);
-  }
+  };
+
+  const addAlbum = async (album: AlbumType) => {
+    await supabase.from("userfavoritealbums").insert({
+      user_id: user?.id,
+      artist: album.artist,
+      album_name: album.albumName,
+      cover: album.cover,
+    });
+  };
+
+  const fetchSavedAlbums = async () => {
+    if (user) {
+      const { data, error } = await supabase
+        .from("userfavoritealbums")
+        .select("*")
+        .eq("user_id", user.id);
+
+      if (error) {
+        console.error("Error fetching images:", error);
+      } else {
+        setFavAlbums(data);
+      }
+    }
+  };
 
   return (
     <AuthContext.Provider
@@ -58,18 +87,19 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         createUser,
         signIn,
         signOut,
-        user
+        user,
+        addAlbum,
       }}
     >
       {children}
     </AuthContext.Provider>
-  )
-}
+  );
+};
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
 };
