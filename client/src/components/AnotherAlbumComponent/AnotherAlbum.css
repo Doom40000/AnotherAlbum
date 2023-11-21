@@ -69,3 +69,38 @@
 .albumDetails:hover {
   color: #f9f59f;
 }
+
+@media only screen and (max-width: 1160px) {
+  .AnotherAlbum {
+    margin-left: 20vw;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .AADisplay div {
+    margin-right: 0!important;
+    margin-top: 2rem;
+  }
+
+  .AAButton {
+    font-size: 20px;
+  }
+  
+  .AnotherAlbum {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    margin-left: 0;
+  }
+
+  .AlbumDetails {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .AlbumDetails h1 {
+    font-size: 18px;
+  }
+}
