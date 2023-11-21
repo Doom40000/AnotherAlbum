@@ -2,6 +2,7 @@
 
 import React from "react";
 import "./Album.css";
+import { useAuth } from "../../context/AuthContext";
 import { motion } from "framer-motion";
 import { Album as AlbumType } from "../../../types";
 
@@ -13,6 +14,8 @@ interface AlbumProps {
 }
 
 const Album: React.FC<AlbumProps> = ({ album, handleToggleFave }) => {
+  const { addAlbum } = useAuth();
+
   return (
     <>
       {album ? (
@@ -32,7 +35,10 @@ const Album: React.FC<AlbumProps> = ({ album, handleToggleFave }) => {
                   ? `${assetPath}/darkerCross.svg`
                   : `${assetPath}/yellowHeartbigger.svg`
               }
-              onClick={() => handleToggleFave(album)}
+              onClick={() => {
+                handleToggleFave(album);
+                addAlbum(album);
+              }}
               alt={
                 album.isFavourite
                   ? "Remove from favourites"

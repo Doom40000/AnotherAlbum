@@ -58,12 +58,15 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   const addAlbum = async (album: AlbumType) => {
-    await supabase.from("userfavoritealbums").insert({
+    const { data, error } = await supabase.from("userfavoritealbums").insert({
       user_id: user?.id,
       artist: album.artist,
       album_name: album.albumName,
       cover: album.cover,
     });
+    if (error) {
+      console.error("Error fetching images:", error);
+    }
   };
 
   const fetchSavedAlbums = async () => {
