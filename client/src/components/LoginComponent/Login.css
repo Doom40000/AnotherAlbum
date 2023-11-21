@@ -15,6 +15,11 @@
   margin: 10px;
  }
 
+ .userDetailsContainer form {
+  display: flex;
+  flex-direction: column;
+ }
+
 .loginButton, .registerButton {
   margin: 20px;
   border: 1px solid #f2e718;
