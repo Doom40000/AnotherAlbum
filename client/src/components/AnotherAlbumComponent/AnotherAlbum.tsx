@@ -9,14 +9,12 @@ import "./AnotherAlbum.css";
 interface AnotherAlbumProps {
   album: AlbumType | null;
   setAlbum: React.Dispatch<React.SetStateAction<AlbumType | null>>;
-  setFavourite: React.Dispatch<React.SetStateAction<boolean>>;
   handleToggleFave: (album: AlbumType) => void;
 }
 
 const AnotherAlbum: React.FC<AnotherAlbumProps> = ({
   album,
   setAlbum,
-  setFavourite,
   handleToggleFave,
 }) => {
   const animationControl = useAnimation();

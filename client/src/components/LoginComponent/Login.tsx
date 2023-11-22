@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { useAuth } from '../../context/AuthContext';
 
 interface LoginProps {
-  isLoggedIn: boolean;
+  isLoggedIn?: boolean;
   setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -40,7 +40,6 @@ const Login: React.FC<LoginProps> = ({ isLoggedIn, setIsLoggedIn }): ReactElemen
 
   const handleSignInSubmit = async (e): Promise<void> => {
     e.preventDefault();
-    console.log('running handler')
     const { email, password } = signInForm;
     if (email && password) {
       await signIn(email, password);

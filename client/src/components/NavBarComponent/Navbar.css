@@ -33,9 +33,7 @@
     font-size: 20px;
     color: #F2E718;
   }
-}
 
-@media only screen and (max-width: 1024px) {
   .Logo {
     width: 200px;
   }

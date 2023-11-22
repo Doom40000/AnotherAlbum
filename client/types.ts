@@ -10,11 +10,6 @@ export interface Album {
 }
 
 export interface AuthContextProps {
-  // supabase: SupabaseClient;
-  // user: User | null;
-  // refreshSession: () => Promise<void>;
-  // getCurrentUser: () => Promise<void>;
-  // updateUser: (updates: any) => Promise<void>;
   createUser: (email: string, password: string) => Promise<void>;
   signIn: (email: string, password: string) => Promise<void>;
   signOut: () => Promise<void>;

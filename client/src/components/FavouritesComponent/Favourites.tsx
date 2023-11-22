@@ -28,7 +28,6 @@ const Favourites: React.FC<FavouritesProps> = ({ favourites, handleToggleFave })
       >
         {favourites.length
           ? favourites.map((album: AlbumType) => (
-            // This could be a component called Album
               <div className="faveAlbum" key={album.id}>
                 <img className="fave" src={album.cover} />
                 <motion.img

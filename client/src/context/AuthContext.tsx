@@ -42,7 +42,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   const signIn = async (email: string, password: string) => {
-    console.log("running");
     const { data, error } = await supabase.auth.signInWithPassword({
       email: email,
       password: password,
