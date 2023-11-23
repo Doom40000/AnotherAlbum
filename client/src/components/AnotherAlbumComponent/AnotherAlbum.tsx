@@ -1,16 +1,22 @@
-/* eslint-disable react/prop-types */
-import { useEffect } from "react";
+//client\src\components\AnotherAlbumComponent\AnotherAlbum.jsx
+import React, { useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import Album from "../AlbumComponent/Album";
+import { Album as AlbumType } from "../../../types";
 import { randomAlbum } from "../../ApiServices/APIServices";
 import "./AnotherAlbum.css";
 
-export default function AnotherAlbum({
+interface AnotherAlbumProps {
+  album: AlbumType | null;
+  setAlbum: React.Dispatch<React.SetStateAction<AlbumType | null>>;
+  handleToggleFave: (album: AlbumType) => void;
+}
+
+const AnotherAlbum: React.FC<AnotherAlbumProps> = ({
   album,
   setAlbum,
-  setFavourite,
   handleToggleFave,
-}) {
+}) => {
   const animationControl = useAnimation();
 
   useEffect(() => {
@@ -19,24 +25,25 @@ export default function AnotherAlbum({
     }
   }, [album, animationControl]);
 
-  const handleClick = async (event) => {
+  const handleClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     try {
       const newAlbum = await randomAlbum();
-      setAlbum(newAlbum);
+      if (newAlbum !== undefined) {
+        setAlbum(newAlbum as AlbumType);
+      } else {
+        setAlbum(null);
+      }
     } catch (error) {
-      console.log(`Error: ${error}`);
+      console.error(`Error: ${error}`);
+      setAlbum(null);
     }
   };
 
   return (
     <div className="AnotherAlbum">
       <div className="AADisplay">
-        <Album
-          album={album}
-          setFavourite={setFavourite}
-          handleToggleFave={handleToggleFave}
-        />
+        {album && <Album album={album} handleToggleFave={handleToggleFave} />}
 
         {album ? (
           <motion.div
@@ -53,7 +60,7 @@ export default function AnotherAlbum({
             whileHover={{
               scale: 1.5,
             }}
-            style={{marginRight: '14vw'}}
+            style={{ marginRight: "14vw" }}
           >
             <button className="AAButton" onClick={handleClick}>
               Hit me with an album!
@@ -84,7 +91,6 @@ export default function AnotherAlbum({
             }}
           >
             Album: {album.albumName}
-
           </motion.h1>
           <motion.h1
             className="albumDetails"
@@ -100,4 +106,6 @@ export default function AnotherAlbum({
       )}
     </div>
   );
-}
+};
+
+export default AnotherAlbum;

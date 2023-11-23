@@ -21,7 +21,6 @@
   max-height: 80px;
   right: 3%;
   cursor: pointer;
-  /* z-index: 2; */
 }
 
 .Album:hover .faveHeart {
@@ -37,3 +36,36 @@
   margin-bottom: 9px;
 }
 
+@media only screen and (max-width: 1024px) {
+  .Album {
+    justify-content: center;
+    display: flex;
+  }
+
+  .albumIMG {
+    max-width: 400px;
+    min-width: 400px;
+    max-height: 400px;
+    min-height: 400px;
+  }
+
+  .faveHeart {
+    position: absolute;
+    display: none;
+    max-width: 80px;
+    max-height: 80px;
+    right: 50%!important;
+    top: 50%!important;
+    transform: translate(50%, calc(-50% - 40px));
+    cursor: pointer;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .albumIMG {
+    max-width: 300px;
+    min-width: 300px;
+    max-height: 300px;
+    min-height: 300px;
+  }
+}
